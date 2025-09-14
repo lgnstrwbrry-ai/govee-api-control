@@ -1,32 +1,108 @@
 {
-	"repoName": "fpp-plugin-Template",
-	"name": "Template Plugin for FPP Plugin developers",
-	"author": "John Doe (jdoe)",
-	"description": "This template plugin is designed to make it easier for plugin authors to create new FPP Plugins.  You can manually clone the git repository or install the Template Plugin and then go to the plugin's config page and use the form to copy the template into a new plugin directory.",
-	"homeURL": "https://github.com/FalconChristmas/fpp-plugin-Template",
-	"srcURL": "https://github.com/FalconChristmas/fpp-plugin-Template.git",
-	"bugURL": "https://github.com/FalconChristmas/fpp-plugin-Template/issues",
-	"allowUpdates": 1,
-	"versions": [
-		{
-			"minFPPVersion": "9.0",
-			"maxFPPVersion": "0",
-			"branch": "master",
-			"sha": "",
-			"dependencies": {
-			    "plugins": [
-					"fpp-plugin-CoolPlugin1",
-					"fpp-plugin-CoolPlugin2"
-				],
-			    "packages": [
-					"system-package-name1",
-					"system-package-name2"
-				],
-				"scripts": [
-					"Control/script-repository-script1",
-					"PixelOverlay/script-repository-script2"
-				]
-			}
-		}
-	]
+  "pluginName": "Govee LAN Control",
+  "pluginVersion": "1.0.0",
+  "pluginAuthor": "FPP Community",
+  "pluginDescription": "Control Govee lights via LAN API from Falcon Player",
+  "pluginLicense": "GPL",
+  "pluginURL": "https://github.com/FalconChristmas/fpp-plugin-govee-lan",
+  "pluginConfigurable": 1,
+  "pluginConflicts": [],
+  "pluginProvides": ["govee-control"],
+  "pluginRequires": [],
+  "configFiles": ["index.php"],
+  "menuItem": {
+    "title": "Govee Control",
+    "parent": "Input/Output",
+    "page": "index.php"
+  },
+  "settings": {
+    "govee_deviceIP": {
+      "name": "govee_deviceIP",
+      "description": "Govee Device IP Address",
+      "type": "string",
+      "default": "192.168.1.100",
+      "restart": 0
+    },
+    "govee_devicePort": {
+      "name": "govee_devicePort", 
+      "description": "Govee Device Port",
+      "type": "int",
+      "default": 4003,
+      "restart": 0
+    },
+    "govee_timeout": {
+      "name": "govee_timeout",
+      "description": "Connection Timeout (seconds)",
+      "type": "int", 
+      "default": 5,
+      "restart": 0
+    },
+    "govee_debug": {
+      "name": "govee_debug",
+      "description": "Enable Debug Logging",
+      "type": "bool",
+      "default": 0,
+      "restart": 0
+    }
+  },
+  "commands": {
+    "Govee Turn On": {
+      "name": "Govee Turn On",
+      "args": [],
+      "description": "Turn Govee lights on"
+    },
+    "Govee Turn Off": {
+      "name": "Govee Turn Off", 
+      "args": [],
+      "description": "Turn Govee lights off"
+    },
+    "Govee Set Brightness": {
+      "name": "Govee Set Brightness",
+      "args": [
+        {
+          "name": "brightness",
+          "type": "int",
+          "description": "Brightness (0-100)",
+          "default": 100
+        }
+      ],
+      "description": "Set Govee light brightness"
+    },
+    "Govee Set Color": {
+      "name": "Govee Set Color",
+      "args": [
+        {
+          "name": "red",
+          "type": "int", 
+          "description": "Red (0-255)",
+          "default": 255
+        },
+        {
+          "name": "green",
+          "type": "int",
+          "description": "Green (0-255)", 
+          "default": 255
+        },
+        {
+          "name": "blue",
+          "type": "int",
+          "description": "Blue (0-255)",
+          "default": 255
+        }
+      ],
+      "description": "Set Govee light RGB color"
+    },
+    "Govee Set Temperature": {
+      "name": "Govee Set Temperature",
+      "args": [
+        {
+          "name": "temperature",
+          "type": "int",
+          "description": "Color Temperature (2000-9000K)",
+          "default": 4000
+        }
+      ],
+      "description": "Set Govee light color temperature"
+    }
+  }
 }
